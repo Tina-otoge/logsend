@@ -1,0 +1,7 @@
+# config
+appdirs
+pyyaml
+
+# handlers
+requests # webhook outputs
+systemd-python # systemd input

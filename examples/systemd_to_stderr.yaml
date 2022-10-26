@@ -1,0 +1,4 @@
+inputs:
+  - Systemd
+outputs:
+  - Stderr
