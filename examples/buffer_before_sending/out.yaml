@@ -1,0 +1,8 @@
+inputs:
+  - type: Stream
+    name: example
+    delay_seconds: 5
+    max_chunk: 10
+    sep: '\n--------------\n'
+outputs:
+  - Stdout

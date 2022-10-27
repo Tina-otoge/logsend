@@ -1,0 +1,9 @@
+inputs:
+  - type: File
+    path: /var/log/messages
+  - type: File
+    path: /var/log/secure
+  - type: File
+    path: /var/log/maillog
+outputs:
+  - type: Stdout

@@ -1,0 +1,8 @@
+inputs:
+  - Systemd
+filters:
+  - type: Field
+    path: meta/unit
+    value: "docker.service"
+outputs:
+  - Stdout

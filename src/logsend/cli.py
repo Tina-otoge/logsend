@@ -5,6 +5,7 @@ from pathlib import Path
 import appdirs
 
 from logsend.bridge import Bridge
+from logsend.models.entry import Entry
 
 
 def collect_bridges_files(paths):
@@ -49,13 +50,28 @@ def main():
         default=1,
         type=int,
     )
+    parser.add_argument(
+        "-s",
+        "--show-hidden",
+        action="store_true",
+        help="Show hidden fields in logs",
+    )
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="Fail on any error",
+    )
     args = parser.parse_args()
+    if args.show_hidden:
+        Entry.show_hidden = True
     bridges_files = collect_bridges_files(args.bridges_path)
     bridges = []
     for path in bridges_files:
         try:
             bridges.append(Bridge.from_file(path))
         except Exception as e:
+            if args.strict:
+                raise e
             print(f'Error while loading {path}: "{e}", skipping...')
     if not bridges:
         print("No bridges loaded, exiting...")

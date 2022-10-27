@@ -1,0 +1,5 @@
+inputs:
+  - type: Systemd
+outputs:
+  - type: Stream
+    name: example

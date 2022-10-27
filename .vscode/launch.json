@@ -5,17 +5,31 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Module",
+            "name": "Run",
             "type": "python",
             "request": "launch",
             "module": "logsend",
             "args": [
-                "examples"
+                "examples",
             ],
             "env": {
                 "PYTHONPATH": "${workspaceFolder}/src",
             },
             "justMyCode": true
-        }
+        },
+        {
+            "name": "Run (strict)",
+            "type": "python",
+            "request": "launch",
+            "module": "logsend",
+            "args": [
+                "--strict",
+                "examples",
+            ],
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src",
+            },
+            "justMyCode": true
+        },
     ]
 }

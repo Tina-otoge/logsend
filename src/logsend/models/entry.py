@@ -7,6 +7,8 @@ from datetime import datetime
 
 @dataclass
 class Entry:
+    show_hidden = False
+
     class Level(enum.Enum):
         DEBUG = enum.auto()
         INFO = enum.auto()
@@ -31,7 +33,7 @@ class Entry:
                     {
                         k: v
                         for k, v in self.meta.items()
-                        if not k.startswith("_")
+                        if not k.startswith("_") or self.show_hidden
                     },
                     indent=2,
                     default=str,

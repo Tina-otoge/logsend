@@ -19,7 +19,6 @@ class SystemdEntry(Entry):
 class SystemdInput(Input):
     def __init__(self):
         self.journal = journal.Reader()
-        self.journal.this_boot()
         self.journal.seek_tail()
         for _ in self.journal:
             # Seek to the end of the journal

@@ -1,4 +1,5 @@
 import dataclasses
+import json
 from dataclasses import dataclass
 from importlib import import_module
 from pathlib import Path
@@ -25,8 +26,10 @@ class Bridge:
                     if not filter.check(entry):
                         break
                 for output in self.outputs:
-                    formatter = output.formatter or self.formatter or str
-                    output.send(formatter(entry))
+                    if not output.skips_formatter:
+                        formatter = output.formatter or self.formatter or str
+                        entry = formatter(entry)
+                    output.send(entry)
 
     @staticmethod
     def _class_loader(cls_name: str, args: dict = None):
@@ -41,6 +44,7 @@ class Bridge:
         kwargs = {
             "inputs": [],
             "outputs": [],
+            "filters": [],
         }
         for key in kwargs:
             for item in data.get(key, []):
